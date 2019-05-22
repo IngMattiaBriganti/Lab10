@@ -1,6 +1,8 @@
 package it.polito.tdp.porto.model;
 
-public class Paper {
+import org.jgrapht.graph.DefaultEdge;
+
+public class Paper extends DefaultEdge {
 
 	private int eprintid;
 	private String title;
@@ -77,6 +79,11 @@ public class Paper {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + eprintid;
+		result = prime * result + ((issn == null) ? 0 : issn.hashCode());
+		result = prime * result + ((publication == null) ? 0 : publication.hashCode());
+		result = prime * result + ((title == null) ? 0 : title.hashCode());
+		result = prime * result + ((type == null) ? 0 : type.hashCode());
+		result = prime * result + ((types == null) ? 0 : types.hashCode());
 		return result;
 	}
 
@@ -91,8 +98,38 @@ public class Paper {
 		Paper other = (Paper) obj;
 		if (eprintid != other.eprintid)
 			return false;
+		if (issn == null) {
+			if (other.issn != null)
+				return false;
+		} else if (!issn.equals(other.issn))
+			return false;
+		if (publication == null) {
+			if (other.publication != null)
+				return false;
+		} else if (!publication.equals(other.publication))
+			return false;
+		if (title == null) {
+			if (other.title != null)
+				return false;
+		} else if (!title.equals(other.title))
+			return false;
+		if (type == null) {
+			if (other.type != null)
+				return false;
+		} else if (!type.equals(other.type))
+			return false;
+		if (types == null) {
+			if (other.types != null)
+				return false;
+		} else if (!types.equals(other.types))
+			return false;
 		return true;
 	}
+
+
+	
+
+
 	
 	
 
